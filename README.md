@@ -1,4 +1,17 @@
-# Convex + TypeScript + ESLint + Vite + React + Clerk + Tailwind + shadcn/ui
+# QuestFerret
+
+Are you a D&D character that needs help completing a challenging quest? 
+Use QuestFerret to find brave heroes with the necessary abilities to come to your aid!
+
+A project built with [Convex](https://convex.dev) for [Learn With Jason](https://learnwithjason.dev)
+
+- Code: [github.com/vakila/questferret](https://github.com/vakila/questferret)
+- Demo: [anjana.dev/questferret](https://anjana.dev/questferret)
+
+
+
+# Bootstrapped with create-convex
+## Convex + TypeScript + ESLint + Vite + React + Clerk + Tailwind + shadcn/ui
 
 This template provides a minimal setup to get Convex working, with TypeScript,
 ESLint and React using [Vite](https://vitejs.dev/). It uses [Clerk](https://clerk.dev/) for user authentication.
