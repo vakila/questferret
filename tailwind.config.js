@@ -3,6 +3,9 @@ module.exports = {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      display: ["Pirata One", "Times New Roman", "serif"],
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -11,6 +14,9 @@ module.exports = {
       },
     },
     extend: {
+      gridTemplateRows: {
+        layout: "1fr 3fr 10%",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
