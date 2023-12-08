@@ -1,14 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { SignInButton, UserButton, useUser } from "@clerk/clerk-react";
-import {
-  Authenticated,
-  Unauthenticated,
-  useMutation,
-  useQuery,
-} from "convex/react";
-import { api } from "../convex/_generated/api";
-import { useState, useEffect } from "react";
-import { Id } from "convex/_generated/dataModel";
+import { Authenticated, Unauthenticated } from "convex/react";
 import useSaveUserEffect from "./hooks/useSaveUserEffect";
 import { QuestSearch } from "./components/Quests";
 
@@ -78,10 +70,6 @@ export default function App() {
   );
 }
 
-function SignedOut() {
-  return <div className="container"></div>;
-}
-
 function SignedIn() {
   const { user } = useUser();
   const userId = useSaveUserEffect();
@@ -93,20 +81,6 @@ function SignedIn() {
         This is you:
         <UserButton afterSignOutUrl="#" />
       </div>
-      <p>
-        Click the button below and open this page in another window - this data
-        is persisted in the Convex cloud database!
-      </p>
-      <p>
-        <Button
-          variant="outline"
-          onClick={() => {
-            // void addNumber({ value: Math.floor(Math.random() * 10) });
-          }}
-        >
-          Add a random number
-        </Button>
-      </p>
     </div>
   );
 }

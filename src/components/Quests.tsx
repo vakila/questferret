@@ -2,7 +2,6 @@ import {
   CaretRightIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  MagnifyingGlassIcon,
 } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -12,8 +11,6 @@ import { api } from "../../convex/_generated/api";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import type { Doc } from "convex/_generated/dataModel";
 import { Textarea } from "./ui/textarea";
-import { Label } from "./ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger } from "./ui/select";
 import { BrowseQuesters } from "./Questers";
 
 export function QuesterOrSeeker() {

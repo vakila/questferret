@@ -11,10 +11,6 @@ import {
   FormMessage,
 } from "./ui/form";
 import { useForm } from "react-hook-form";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
-import { Select } from "./ui/select";
 import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useState } from "react";
@@ -34,7 +30,7 @@ const ABILITIES = {
 };
 
 export function BrowseQuesters({ quest }: { quest: any }) {
-  const { title, type, description, seekerName } = quest;
+  const { title, type, seekerName } = quest;
   const allClasses = useQuery(api.questers.listClasses);
 
   const form = useForm({
@@ -159,7 +155,11 @@ export function BrowseQuesters({ quest }: { quest: any }) {
                                   </FormLabel>
                                   <span className="text-sm flex ">
                                     <CaretRightIcon width="20" height="20" />
-                                    {field.value[abbrv]}
+                                    {
+                                      field.value[
+                                        abbrv as keyof typeof ABILITIES
+                                      ]
+                                    }
                                   </span>
 
                                   <FormControl>
