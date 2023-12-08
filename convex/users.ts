@@ -1,4 +1,3 @@
-import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
 
 // Write your Convex functions in any file inside this directory (`convex`).

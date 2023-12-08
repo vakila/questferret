@@ -15,7 +15,7 @@ module.exports = {
     },
     extend: {
       gridTemplateRows: {
-        layout: "1fr 3fr 10%",
+        layout: "15% 3fr 10%",
       },
       colors: {
         border: "hsl(var(--border))",

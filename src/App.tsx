@@ -10,14 +10,13 @@ import { api } from "../convex/_generated/api";
 import { useState, useEffect } from "react";
 import { Id } from "convex/_generated/dataModel";
 import useSaveUserEffect from "./hooks/useSaveUserEffect";
+import { QuestSearch } from "./components/Quests";
 
 export default function App() {
   return (
     <div className="dark container max-w-5xl grid grid-rows-layout justify-center ">
-      <header className="w-full font-display flex flex-row justify-between items-center py-4 my-4 ">
-        <h1 className="text-6xl font-extrabold my-8 text-center">
-          questferret
-        </h1>
+      <header className="w-full font-display flex flex-row justify-between items-center pt-4 mt-4 ">
+        <h1 className="text-6xl font-extrabold text-center">questferret</h1>
         <Authenticated>
           <UserButton afterSignOutUrl="#" />
         </Authenticated>
@@ -32,12 +31,15 @@ export default function App() {
           </SignInButton>
         </Unauthenticated>
       </header>
-      <main className="container max-w-2xl flex flex-col gap-8 py-4 my-4 font-serif">
+      <main className="w-full flex flex-col gap-8 py-4 my-4 font-serif">
         <Authenticated>
           <SignedIn />
         </Authenticated>
+        <Unauthenticated>
+          <QuestSearch />
+        </Unauthenticated>
       </main>
-      <footer className="font-serif text-2xl my-4 py-4 ">
+      <footer className="w-full text-center font-serif text-2xl my-4 py-4 ">
         Conjured with{" "}
         <a
           className="font-display hover:text-primary-foreground/80 text-primary-foreground"
@@ -74,6 +76,10 @@ export default function App() {
       </footer>
     </div>
   );
+}
+
+function SignedOut() {
+  return <div className="container"></div>;
 }
 
 function SignedIn() {

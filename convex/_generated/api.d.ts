@@ -16,6 +16,7 @@ import type {
 } from "convex/server";
 import type * as _schema from "../_schema";
 import type * as myFunctions from "../myFunctions";
+import type * as quests from "../quests";
 import type * as users from "../users";
 
 /**
@@ -29,6 +30,7 @@ import type * as users from "../users";
 declare const fullApi: ApiFromModules<{
   _schema: typeof _schema;
   myFunctions: typeof myFunctions;
+  quests: typeof quests;
   users: typeof users;
 }>;
 export declare const api: FilterApi<
