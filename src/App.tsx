@@ -6,7 +6,7 @@ import { QuestSearch } from "./components/Quests";
 
 export default function App() {
   return (
-    <div className="dark container max-w-5xl grid grid-rows-layout justify-center ">
+    <div className="container max-w-5xl grid grid-rows-layout justify-center ">
       <header className="w-full font-display flex flex-row justify-between items-center pt-4 mt-4 ">
         <h1 className="text-6xl font-extrabold text-center">questferret</h1>
         <Authenticated>
