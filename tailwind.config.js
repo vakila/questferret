@@ -15,7 +15,10 @@ module.exports = {
     },
     extend: {
       gridTemplateRows: {
-        layout: "15% 3fr 10%",
+        layout: "5em 1fr 3em",
+      },
+      gridTemplateColumns: {
+        sidebar: "1fr 2fr",
       },
       colors: {
         border: "hsl(var(--border))",

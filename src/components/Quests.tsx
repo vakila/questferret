@@ -1,4 +1,9 @@
-import { CaretRightIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import {
+  CaretRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MagnifyingGlassIcon,
+} from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useState } from "react";
@@ -9,6 +14,7 @@ import type { Doc } from "convex/_generated/dataModel";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "./ui/select";
+import { BrowseQuesters } from "./Questers";
 
 export function QuesterOrSeeker() {
   const [role, setRole] = useState<"quester" | "seeker" | null>(null);
@@ -76,16 +82,26 @@ export function QuestTypeCard({ q, onClick }: { q: Doc; onClick: () => void }) {
 export function QuestSearch() {
   const questTypes = useQuery(api.quests.listTypes);
   const [type, setType] = useState<string | null>(null);
+  const [questInfo, setQuestInfo] = useState<any>(null);
 
+  if (questInfo) {
+    return <BrowseQuesters quest={questInfo} />;
+  }
   if (type) {
-    return <NewQuest type={type} />;
+    return (
+      <NewQuest
+        type={type}
+        goBack={() => setType(null)}
+        setQuestInfo={setQuestInfo}
+      />
+    );
   }
   return (
     <>
-      <h2 className="font-display text-5xl text-center">
-        Find a brave hero to fulfill your quest
+      <h2 className="text-5xl text-center">
+        What quest needeth thee fulfilled?
       </h2>
-      <div className="flex flex-row items-center w-full">
+      {/* <div className="flex flex-row items-center w-full">
         <Input
           type="text"
           className="text-3xl h-12"
@@ -97,20 +113,29 @@ export function QuestSearch() {
         >
           <MagnifyingGlassIcon width="30" height="30" />
         </Button>
-      </div>
+      </div> */}
       <div className="w-full grid grid-cols-4 grid-flow-row gap-2">
         {questTypes?.map((q) => (
-          <QuestTypeCard q={q} onClick={() => setType(q.title)} />
+          <QuestTypeCard key={q._id} q={q} onClick={() => setType(q.title)} />
         ))}
       </div>
     </>
   );
 }
 
-export function NewQuest({ type }: { type: string }) {
-  const [name, setName] = useState<string>("");
+export function NewQuest({
+  type,
+  goBack,
+  setQuestInfo,
+}: {
+  type: string;
+  goBack: () => void;
+  setQuestInfo: (info: any) => void;
+}) {
+  const [seekerName, setSeekerName] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const incomplete = !seekerName || !title || !description;
   return (
     <div className="flex flex-col gap-6">
       <p className="text-2xl text-center">
@@ -130,7 +155,7 @@ export function NewQuest({ type }: { type: string }) {
         name="seeker-name"
         placeholder="What is your name?"
         className="text-3xl h-12"
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setSeekerName(e.target.value)}
       />
       <Input
         type="text"
@@ -145,13 +170,22 @@ export function NewQuest({ type }: { type: string }) {
         placeholder="Share the details of your quest"
         onChange={(e) => setDescription(e.target.value)}
       ></Textarea>
-      <Button
-        variant="quest"
-        className="text-3xl h-12"
-        disabled={!name || !title || !description}
-      >
-        Reveal valiant Questers
-      </Button>
+      <div className="flex flex-row justify-between">
+        <Button variant="quest" className="text-3xl h-12" onClick={goBack}>
+          <ChevronLeftIcon /> Back
+        </Button>
+        <Button
+          variant="quest"
+          className="text-3xl h-12"
+          disabled={incomplete}
+          onClick={() => {
+            setQuestInfo({ type, title, description, seekerName });
+          }}
+        >
+          Reveal valiant Questers
+          <ChevronRightIcon />
+        </Button>
+      </div>
     </div>
   );
 }
